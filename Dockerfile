@@ -14,10 +14,7 @@ RUN composer --version
 # Run docker-php-ext-install for available extensions
 RUN docker-php-ext-install pdo pdo_mysql opcache zip
 
-COPY docker-php-ext-* docker-php-entrypoint /usr/local/bin/
-
 ENTRYPOINT ["docker-php-entrypoint"]
-COPY apache2-foreground /usr/local/bin/
 WORKDIR /var/www/html
 EXPOSE 80
 CMD ["apache2-foreground"]
