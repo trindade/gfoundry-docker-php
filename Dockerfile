@@ -14,6 +14,11 @@ RUN composer --version
 # Run docker-php-ext-install for available extensions
 RUN docker-php-ext-install pdo pdo_mysql opcache zip
 
+RUN ln -sf /dev/stdout /var/log/apache2/access.log \
+	&& ln -sf /dev/stderr /var/log/apache2/error.log
+
+RUN a2enmod rewrite
+
 ENTRYPOINT ["docker-php-entrypoint"]
 WORKDIR /var/www/html
 EXPOSE 80
